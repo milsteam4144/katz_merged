@@ -4,15 +4,15 @@
  <meta charset="UTF-8">
  <meta name="viewport" content="width=device-width,initial-scale=1">
  <meta name= "Author" content="Martay Williams">
- <script>
 
-
- </script>
+<!-- not sure if this is necesary or not
+<link rel="stylesheet" href="index.css">
+ <script defer src="login-page.js"></script>
+-->
 
      <!--Load the static variable that refers to the images folder-->
      {% load static %}
-
-
+ 
  <title> Katz Home Page </title>
  </head>
  <style>
@@ -27,7 +27,6 @@
 	padding: 20px 20px;
 	box-sizing: border-box;
 	border-radius: 20px;
-
 }
 
 h1 {
@@ -61,7 +60,6 @@ background-color:#3792cb;
 padding-top:15px;
 	padding-bottom:15px;
 	border-radius: 20px;
-
 }
 
 th {
@@ -76,9 +74,9 @@ th {
 	margin-right: auto;
 	margin-left: auto;
 	border: 1px solid #ccc;
-  border-radius: 15px;
-  box-sizing: border-box;
-  letter-spacing: 3px;
+    border-radius: 15px;
+    box-sizing: border-box;
+    letter-spacing: 3px;
 }
 
 
@@ -91,7 +89,6 @@ th {
 	padding-right: 30px;
 	padding-top:15px;
 	padding-bottom:15px;
-
 }
 img {
   border:15px solid #d8f9ff;
@@ -128,7 +125,6 @@ img {
 <div class="left_cat_image"><a href="{% url 'kittens' %}">
     <img src="{% static 'merlin1.jpg' %}" id="catimage" alt="My image" height="300" width="400">
  </a> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-
 
 <a href="{% url 'kittens' %}">
     <img src="{% static 'willy1.jpg' %}" alt="My image" height="300" width="400">

@@ -1,11 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="en">
  <head>
 <meta charset="UTF-8">
 
 	 {% load static %}
-
  <title> Cat Registration Form </title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="stylesheet" href="register.css">
@@ -114,6 +112,7 @@ h1 {
 }
  </style>
 <script>
+    
 function checkGender() {
   var gender = document.getElementById("gender").value;
         var confirmMF = "Male";
@@ -151,6 +150,9 @@ function checkGender() {
          <option value="Male">Male</option>
          <option value="Female">Female</option>
      </select>-->
+     
+     <label for="kitten" class="form-label">Birthday:<br>Must be in format <br></label>
+     <input type="date" name="bday" required><br><br>
   
   <label for="kitten" class="form-label">Color:<br></label>
 	<input type="text" name="color" required><br>
@@ -188,11 +190,12 @@ function checkGender() {
  </form>
  </div>
 
-<ol>
+ <!--<ol>
     {% for females in females %}
     <li>{{females}}</li>
     {% endfor %}
-</ol>
+</ol>-->
 
 </body>
 </html>
+
