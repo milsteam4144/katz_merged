@@ -169,13 +169,13 @@ function checkGender() {
      {% endfor %} -->
      <label for="mother">Mother:</label>
 
-     <select name="mother" id="mother">
+     <select name="mother" id="mother" value="Unknown">
          {% for females in females %} <option value="{{females.name}}">{{females}}</option> {% endfor %}
      </select>
 
      <label for="father">Father:</label>
 
-     <select name="father" id="father">
+     <select name="father" id="father" value="Unknown">
          {% for males in males %} <option value="{{males.name}}">{{males}}</option> {% endfor %}
      </select><br>
 

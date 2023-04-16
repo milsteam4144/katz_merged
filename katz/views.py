@@ -9,6 +9,8 @@ from venmo_api import Client
 import requests
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import get_user_model
+User = get_user_model()
 
 # function to get venmo transactions and add any that are new to the db
 def updateVenmo():    #this is not a view but is used in the login_page view
@@ -93,7 +95,7 @@ def login_page(request):
             if user is not None:
                 login(request, user)
                 # Updates the database with any new Venmo transactions
-                updateVenmo()
+                #updateVenmo()
             return redirect('index')
             #else:
                 #messages.error(request, 'Invalid form submission.')
@@ -113,13 +115,20 @@ def cat_register(request):
         gender = request.POST['gender']
         color = request.POST['color']
         personality = request.POST['personality']
-        mother = request.POST['mother']
-        father = request.POST['father']
+
+        if not request.POST['mother']:
+            mother = "Unknown"
+        else:
+            mother = request.POST['mother']
+
+        if not request.POST['father']:
+            father = "Unknown"
+        else:
+            father = request.POST['father']
         image = request.FILES['image']
         price = request.POST['price']
         bday = request.POST['bday']
         bday_date = datetime.strptime(bday, '%Y-%m-%d')
-        #breeder = Breeder.objects.filter(id=35).first()
         cattest = CatTest(name=name, birthday=bday_date, gender=gender,
                   personality=personality, color=color, mother=mother, father=father, image=image, price=price, owner=owner)
         cattest.save()
