@@ -10,6 +10,9 @@ import requests
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import get_user_model
+import regex
+
+
 User = get_user_model()
 
 # function to get venmo transactions and add any that are new to the db
@@ -26,9 +29,9 @@ def updateVenmo():    #this is not a view but is used in the login_page view
         except IndexError:
             type = ''
         try:
-            catID = transaction.note.split(" ")[2]
+            cat_name = transaction.note.split(" ")[2]
         except IndexError:
-            catID = ''
+            cat_name = ''
 
         # Date is converted from timestamp to python datetime,date object
         try:
@@ -42,7 +45,7 @@ def updateVenmo():    #this is not a view but is used in the login_page view
         except (Transaction.DoesNotExist):
             transaction = Transaction(id=transaction.id, cust_first_name=transaction.actor.first_name, cust_last_name=transaction.actor.last_name,
                                       cust_venmo_name=transaction.actor.username, amount=transaction.amount, type=type,
-                                      catID=catID, date=formatted_date)
+                                      cat_name=cat_name, date=formatted_date)
             transaction.save()
 
     #End the connection to venmo
@@ -153,26 +156,29 @@ def query_test(request):
             transaction_output_list.append(trans_string)
 
     if cat_name_input != False:
-        cat_name_list = Transaction.objects.filter(catID=cat_name_input)
+        cat_name_list = Transaction.objects.filter(cat_name=cat_name_input)
         for each in cat_name_list:
             date = each.date.strftime("%B %d %Y")
-            trans_string = "%s %s paid $ %s on %s for %s" % (each.cust_first_name, each.cust_last_name, each.amount, date, each.catID)
+            trans_string = "%s %s paid $ %s on %s for %s" % (each.cust_first_name, each.cust_last_name, each.amount, date, each.cat_name)
             transaction_output_list.append(trans_string)
 
+    '''
     if month_year_input != False:
-        month_year_list = Transaction.objects.filter(date=(month_year_input) + "-" + "(.*?)")
-        print(month_year_input + "-" + "(.*?)")
+        month_year_list = Transaction.objects.()
+        print(month_year_input)
         for each in month_year_list:
-            date = each.date.strftime("%B %d %Y")
-            trans_string = "%s %s paid $ %s on %s for %s" % (each.cust_first_name, each.cust_last_name, each.amount, date, each.catID)
-            transaction_output_list.append(trans_string)
-
+            match = regex.search(month_year_input + d, each.date)
+            for each in match:
+                date = each.date.strftime("%B %d %Y")
+                trans_string = "%s %s paid $ %s on %s for %s" % (each.cust_first_name, each.cust_last_name, each.amount, date, each.catID)
+                transaction_output_list.append(trans_string)
+    '''
 
     #If no info is given on the form
     if cat_name_input == False and month_year_input == False and cust_name_input == False:
         for each in transactions:
             date = each.date.strftime("%B %d %Y")
-            trans_string = "%s %s paid $ %s on %s for %s" % (each.cust_first_name, each.cust_last_name, each.amount, date, each.catID)
+            trans_string = "%s %s paid $ %s on %s for %s" % (each.cust_first_name, each.cust_last_name, each.amount, date, each.cat_name)
             transaction_output_list.append(trans_string)
     return render(request, "../templates/query_test.html", {'transactions':transaction_output_list})
 

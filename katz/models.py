@@ -69,7 +69,7 @@ class Transaction(models.Model):
     cust_venmo_name = models.CharField(max_length=30, null=True, blank=True)  # the venmo username of the customer
     amount = models.DecimalField(decimal_places=2, max_digits=12, null=True)
     #Should change to catName
-    catID = models.CharField(max_length=5, null=True, blank=True)
+    cat_name = models.CharField(max_length=30, null=True, blank=True)
     type = models.CharField(max_length=15, null=True, blank=True)
     date = models.DateField(null=True, blank=True)
 

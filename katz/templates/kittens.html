@@ -124,7 +124,6 @@ padding: 10px;
 .button:hover {
   background-color: #ff6242;
 }
-
 <!-- -->
 .button2{
 	background-color: #20124d;
@@ -221,7 +220,6 @@ padding: 10px;
 <body>
 <h1>Avaliable Cats</h1>
 {% if user.role == 'breeder' %}
-
 <div class="banner">
     <table>
         <tr>
@@ -327,6 +325,7 @@ padding: 10px;
             </div>
             <div class="infotext">
                 <h3>Male, White, Hyper</h3>
+
             </div>
             <br>
             <button onclick="" class="button">
@@ -334,6 +333,7 @@ padding: 10px;
             </button>
         </div>
     </li>
+
 
     {% for cats in cats %}
     <!-- this a FOR loop that automatically goes through all the cats in the CatTest table in the database
@@ -353,7 +353,7 @@ padding: 10px;
                 <h2>{{cats.price}}</h2>
             </div>
             <div class="infotext">
-                <h3>{{cats.gender}}, {{cats.color}}, {{cats.personality}}, {{cats.birthday}}, {{cats.age}}
+                <h3>{{cats.gender}}, {{cats.color}}, {{cats.personality}}
                     <br> Uploaded By {{cats.owner}}</h3>
 
             </div>
@@ -366,12 +366,12 @@ padding: 10px;
             </form>
             {% endif %}
             {% else %}
-           <form action="purchase_direct/{{ cats.id }}/{{ user.id }}" method="post">{% csrf_token %}
+            <form action="purchase_direct/{{ cats.id }}/{{ user.id }}" method="post">{% csrf_token %}
                 <button onclick="" class="button" type="submit">Purchase</button>
             </form>
-     <!--       <button id ="{{cats.id}}" onclick="" class="button">
-                Purchase
-            </button> -->
+            <!--       <button id ="{{cats.id}}" onclick="" class="button">
+                       Purchase
+                   </button> -->
             {% endif %}
             <div class="box">
                 <a class="button2c" href="#{{cats.id}}">Pedigree</a>
@@ -403,66 +403,66 @@ padding: 10px;
 
 
 
-<!--
-    <li class="items-list">
+            <!--
+                <li class="items-list">
 
-        <img src="{{cats.image.url}}" alt="{{cats.name}}" width="200" height="auto" />
-         the {{cats.image.url is supposed to render the image from the database. Don't know why it's not
+                    <img src="{{cats.image.url}}" alt="{{cats.name}}" width="200" height="auto" />
+                     the {{cats.image.url is supposed to render the image from the database. Don't know why it's not
 
 
-        <div class="righttxt">
-            <div class="nametext">
-                <h1>{{cats.name}}</h1>
-            </div>
-            <div class="pricetext">
-                <h2>{{cats.price}}</h2>
-            </div>
-            <div class="infotext">
-                <h3>{{cats.gender}}, {{cats.color}}, {{cats.personality}}
-                    <br> Uploaded By {{cats.owner}}</h3>
-            </div>
-            <br>
-            <button onclick="" class="button">
-                Purchase
-            </button>
-            <div class="box">
-                <a class="button2c" href="#{{cats.id}}">Pedigree</a>
-            </div>
-
-            <div id="{{cats.id}}" class="overlay">
-                <div class="popup">
-                    <a class="close" href="#">&times;</a>
-                    <div class="content">
-                        <br>
-                        <div style = "Text-align:center" >
-                            <u><b>Parents</b></u>
-                            <br>
+                    <div class="righttxt">
+                        <div class="nametext">
+                            <h1>{{cats.name}}</h1>
                         </div>
-                        <div style = "Text-align:left;float:left;position:absolute;left:100px" >
-                            <b>Father:</b> {{cats.father}}
+                        <div class="pricetext">
+                            <h2>{{cats.price}}</h2>
                         </div>
-                        <div style = "Text-align:right;float:right;position:absolute;right:100px" >
-                            <b>Mother:</b> {{cats.mother}}
+                        <div class="infotext">
+                            <h3>{{cats.gender}}, {{cats.color}}, {{cats.personality}}
+                                <br> Uploaded By {{cats.owner}}</h3>
+
                         </div>
                         <br>
-                        <hr size="8" width="90%" color="red">
-                        <div style = "Text-align:center" >
-                            <u><b>{{cats.name}}</b></u> </div>
-                        <br>
-                    </div>
-                </div>
-            </div> -->
+                        <button onclick="" class="button">
+                            Purchase
+                        </button>
+                        <div class="box">
+                            <a class="button2c" href="#{{cats.id}}">Pedigree</a>
+                        </div>
+
+                        <div id="{{cats.id}}" class="overlay">
+                            <div class="popup">
+                                <a class="close" href="#">&times;</a>
+                                <div class="content">
+                                    <br>
+                                    <div style = "Text-align:center" >
+                                        <u><b>Parents</b></u>
+                                        <br>
+                                    </div>
+                                    <div style = "Text-align:left;float:left;position:absolute;left:100px" >
+                                        <b>Father:</b> {{cats.father}}
+                                    </div>
+                                    <div style = "Text-align:right;float:right;position:absolute;right:100px" >
+                                        <b>Mother:</b> {{cats.mother}}
+                                    </div>
+                                    <br>
+                                    <hr size="8" width="90%" color="red">
+                                    <div style = "Text-align:center" >
+                                        <u><b>{{cats.name}}</b></u> </div>
+                                    <br>
+                                </div>
+                            </div>
+                        </div> -->
             {% else %}
             {% endif %}
+
             {% endfor %}
         </div>
     </li>
 
 
 </ul>
-
 {% endif %}
-
 <!--<table>
     <tr>
         <td>text above pic1</td>
